@@ -26,12 +26,15 @@ export const useItemsStore = defineStore('myStore', {
             this.items = this.items.filter((item) => item.id !== id)
             api.set('items', this.items)
         },
-        toggleItem(id: number) {
+        setCompleted(id: number, completed: boolean) {
             const item = this.items.find((item) => item.id === id)
             if (item) {
-                item.completed = !item.completed
+                item.completed = completed
                 api.set('items', this.items)
             }
+        },
+        toggleItem(id: number) {
+            this.setCompleted(id, !this.items.find((item) => item.id === id)?.completed)
         },
         setFilter(filter: string) {
             this.filter = filter

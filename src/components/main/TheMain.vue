@@ -1,6 +1,12 @@
 <template>
     <main class="app">
-        <MainToolbar :selectedIds="selectedIds" />
+        <MainToolbar 
+            :selectedIds="selectedIds"
+            :items="store.items"
+            @removeItems="removeSelectedItems()"
+            @completeItems="completeSelectedItems()"
+            @activateItems="activateSelectedItems()"
+        />
         <AddItem />
         <Items :items="store.items" :selectedIds="selectedIds" @toggleSelect="toggleSelect" />
     </main>
@@ -23,6 +29,18 @@ const toggleSelect = (id: number) => {
     } else {
         selectedIds.push(id);
     }
+};
+
+const removeSelectedItems = () => {
+    selectedIds.forEach(id => store.removeItem(id));
+};
+
+const completeSelectedItems = () => {
+    selectedIds.forEach(id => store.setCompleted(id, true));
+};
+
+const activateSelectedItems = () => {
+    selectedIds.forEach(id => store.setCompleted(id, false));
 };
 </script>
 

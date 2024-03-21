@@ -12,8 +12,19 @@
 
 <script setup lang="ts">
 import { useItemsStore } from '@/stores/items';
+import type { IToDo } from '@/types';
 
-const props = defineProps(['item', "selected"]);
+
+const props = defineProps({
+    item: {
+        type: Object as () => IToDo,
+        required: true
+    },
+    selected: {
+        type: Boolean,
+        default: false
+    }
+})
 
 const emit = defineEmits(["toggleSelect"]);
 
