@@ -13,7 +13,6 @@ module.exports = {
         ecmaVersion: 'latest'
     },
     rules: {
-        // indent: ['off', 4],
         indent: ['warn', 4],
         'vue/script-indent': [
             'warn',
@@ -24,6 +23,7 @@ module.exports = {
                 ignores: []
             }
         ],
-        'vue/html-indent': ['warn', 4]
+        'vue/html-indent': ['warn', 4],
+        "vue/multi-word-component-names": "off",
     }
 }
