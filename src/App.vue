@@ -8,7 +8,10 @@
 import TheHeader from '@/components/TheHeader.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import TheMain from './components/main/TheMain.vue'
+import { useItemsStore } from './stores/items';
 
+const store = useItemsStore();
+store.getData();
 </script>
 
 <style scoped>

@@ -18,7 +18,7 @@ module.exports = {
             'warn',
             4,
             {
-                baseIndent: 1,
+                baseIndent: 0,
                 switchCase: 0,
                 ignores: []
             }
