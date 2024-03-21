@@ -1,6 +1,6 @@
 export interface IToDo {
     id: number
-    title: string
+    name: string
     description: string
     completed: boolean
 }
