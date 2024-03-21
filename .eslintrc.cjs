@@ -25,5 +25,12 @@ module.exports = {
         ],
         'vue/html-indent': ['warn', 4],
         "vue/multi-word-component-names": "off",
+        'vue/max-attributes-per-line': [
+            'warn',
+            {
+                singleline: 3,
+                multiline: 1
+            }
+        ],
     }
 }
