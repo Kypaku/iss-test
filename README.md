@@ -8,6 +8,9 @@
 
 Смотрите [Справочник по конфигурации Vite.](https://vitejs.dev/config/).
 
+## Демо
+[Демо](http://kypaku.ru/pages/iss-test/)
+
 ## Настройка проекта
 
 ```sh
