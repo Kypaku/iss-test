@@ -5,7 +5,7 @@
             <span v-if="!item.completed">✔️</span>
             <span v-else>❌</span>
         </button>
-        <h3>{{ item.name }}</h3>
+        <a href="#" @click.prevent="emit('openModal')">{{ item.name }}</a>
     </div>
 </template>
 
@@ -25,7 +25,7 @@ const props = defineProps({
     }
 })
 
-const emit = defineEmits(["toggleSelect"]);
+const emit = defineEmits(["toggleSelect", "openModal"]);
 
 const store = useItemsStore();
 

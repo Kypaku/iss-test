@@ -5,16 +5,19 @@
             :item="item"
             :key="item.id"
             :selected="selectedIds.includes(item.id)"
-            @toggleSelect="() => emit('toggleSelect', item.id)" 
+            @toggleSelect="() => emit('toggleSelect', item.id)"
+            @openModal="currentItem = item"
         />
+        <ItemModal v-if="currentItem" :item="currentItem" @close="currentItem = null"/>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { IToDo } from '@/types';
 import Item from './Item.vue';
+import ItemModal from './ItemModal.vue';
 import { useItemsStore } from '@/stores/items';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
     items: {
@@ -30,6 +33,8 @@ const props = defineProps({
 const emit = defineEmits(['toggleSelect']);
 
 const store = useItemsStore();
+
+const currentItem = ref(null as IToDo | null);
 
 const filtered = computed(() => {
     return props.items.filter(item => {

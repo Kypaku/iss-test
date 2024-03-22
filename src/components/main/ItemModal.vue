@@ -10,8 +10,8 @@
 
 <script setup lang="ts">
 import AppModal from '@/components/misc/AppModal.vue';
-import {IToDo} from '@/types'
-import { useItemsStore } from './stores/items';
+import type {IToDo} from '@/types'
+import { useItemsStore } from '@/stores/items';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -21,6 +21,8 @@ const props = defineProps({
     },
 })
 
+const emit = defineEmits(['close']);
+
 const store = useItemsStore()
 
 const name = ref(props.item.name)
@@ -28,6 +30,7 @@ const description = ref(props.item.description)
 
 const del = () => {
     store.removeItem(props.item.id);
+    emit('close');
 };
 
 const save = () => {
