@@ -1,10 +1,14 @@
 
 <template>
-    <AppModal class="item-modal" @close="emit('close')">
-        <input type="text" v-model="name"/>
-        <input type="text" v-model="description"/>
-        <button @click="save">Save</button>
-        <button @click="del">Del</button>
+    <AppModal @close="emit('close')">
+        <div class="item-modal mt-4">
+            <InputText class="w-full mb-4" :error="!name.length && 'Поле название необходимо'" v-model:value="name" label="Название*: "/>
+            <InputTextarea class="w-full mb-4" v-model:value="description" label="Описание: "/>
+            <div class="flex items-center justify-between text-white">
+                <button class="bg-blue-700 px-2 py-1 rounded" @click="save">Сохранить</button>
+                <button class="bg-red-400 px-2 py-1 rounded" @click="del">Удалить</button>
+            </div>
+        </div>
     </AppModal>
 </template>
 
@@ -13,6 +17,8 @@ import AppModal from '@/components/misc/AppModal.vue';
 import type {IToDo} from '@/types'
 import { useItemsStore } from '@/stores/items';
 import { ref } from 'vue';
+import InputText from '@/components/misc/InputText.vue'
+import InputTextarea from '@/components/misc/InputTextarea.vue'
 
 const props = defineProps({
     item: {
@@ -41,3 +47,5 @@ const save = () => {
     })
 }
 </script>
+            InputTextarea,
+        

@@ -26,6 +26,7 @@ export const useItemsStore = defineStore('myStore', {
             const item = this.items.find((item) => item.id === data.id)
             if (item) {
                 for (const key in data) {
+                    // @ts-ignore
                     item[key] = data[key];
                 }
                 api.set('items', this.items)

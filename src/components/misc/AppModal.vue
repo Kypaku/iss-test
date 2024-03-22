@@ -2,7 +2,7 @@
     <Teleport to="body">
         <div class="overlay"></div>
         <div class="app-modal fixed" v-click-outside="() => emit('close')">
-            <button class="close" @click="emit('close')">X</button>
+            <button class="close absolute" @click="emit('close')">✖️</button>
             <slot/>
         </div>
     </Teleport>
@@ -14,6 +14,12 @@ const emit = defineEmits(['close'])
 </script>
 
 <style lang="scss" scoped>
+    .close{
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+
     .app-modal{
         z-index: 1000;
         width: 100%;
