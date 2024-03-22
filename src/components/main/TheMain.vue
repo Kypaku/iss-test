@@ -1,20 +1,25 @@
 <template>
     <main class="app">
-        <MainToolbar 
+        <MainToolbar
+            class="mb-4"
             :selectedIds="selectedIds"
             :items="store.items"
             @removeItems="removeSelectedItems()"
             @completeItems="completeSelectedItems()"
             @activateItems="activateSelectedItems()"
+            @clearSelected="selectedIds.splice(0)"
         />
-        <Items :items="store.items" :selectedIds="selectedIds" @toggleSelect="toggleSelect" />
+        <Items 
+            :items="store.items"
+            :selectedIds="selectedIds" 
+            @setSelect="toggleSelect" 
+        />
     </main>
 </template>
 
 <script setup lang="ts">
 import MainToolbar from './MainToolbar.vue';
 import Items from './Items.vue';
-import AddItem from './AddItem.vue';
 import { useItemsStore } from '@/stores/items';
 import { reactive } from 'vue';
 

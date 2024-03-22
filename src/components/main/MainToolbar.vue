@@ -33,12 +33,13 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits(['removeItems', 'completeItems', 'activateItems']);
+const emit = defineEmits(['removeItems', 'completeItems', 'activateItems', 'clearSelected']);
 
 const store = useItemsStore();
 
 const setFilter = (filter: string) => {
     store.setFilter(filter);
+    emit('clearSelected');
 };
 
 const selectedItems = computed(() => {

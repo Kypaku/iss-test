@@ -1,7 +1,9 @@
 <template>
     <div class="items">
-        <button class="bg-gray-300 mb-2 px-2 py-1 rounded" @click="add">Добавить</button>
+        <button class="bg-gray-300 mb-4 px-2 py-1 rounded" @click="add">Добавить</button>
         <Item 
+            class="mb-1"
+            :class="{selected: selectedIds.length}"
             v-for="item in filtered"
             :item="item"
             :key="item.id"
