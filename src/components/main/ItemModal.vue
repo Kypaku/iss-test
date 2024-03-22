@@ -5,7 +5,7 @@
             <InputText class="w-full mb-4" :error="!name.length && 'Поле название необходимо'" v-model:value="name" label="Название*: "/>
             <InputTextarea class="w-full mb-4" v-model:value="description" label="Описание: "/>
             <div class="flex items-center justify-between text-white">
-                <button class="bg-blue-700 px-2 py-1 rounded" @click="save">Сохранить</button>
+                <button :disabled="!name" class="disabled:bg-blue-500 bg-blue-700 px-2 py-1 rounded" @click="save">Сохранить</button>
                 <button class="bg-red-400 px-2 py-1 rounded" @click="del">Удалить</button>
             </div>
         </div>
@@ -45,7 +45,7 @@ const save = () => {
         name: name.value,
         description: description.value,
     })
+    emit('close');
 }
 </script>
-            InputTextarea,
         

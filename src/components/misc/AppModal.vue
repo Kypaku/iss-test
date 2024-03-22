@@ -1,7 +1,7 @@
 <template>
     <Teleport to="body">
-        <div class="overlay"></div>
-        <div class="app-modal fixed" v-click-outside="() => emit('close')">
+        <div class="overlay" @click="emit('close')"></div>
+        <div class="app-modal fixed">
             <button class="close absolute" @click="emit('close')">✖️</button>
             <slot/>
         </div>

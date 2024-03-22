@@ -3,11 +3,8 @@ import './assets/main.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-// @ts-ignore
-import vClickOutside from 'click-outside-vue3';
 
-
-const app = createApp(App).use(vClickOutside)
+const app = createApp(App)
 
 app.use(createPinia())
 
