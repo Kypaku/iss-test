@@ -22,6 +22,15 @@ export const useItemsStore = defineStore('myStore', {
             this.items.push(item)
             api.set('items', this.items)
         },
+        editItem(data: Partial<IToDo>) {
+            const item = this.items.find((item) => item.id === data.id)
+            if (item) {
+                for (const key in data) {
+                    item[key] = data[key];
+                }
+                api.set('items', this.items)
+            }
+        },
         removeItem(id: number) {
             this.items = this.items.filter((item) => item.id !== id)
             api.set('items', this.items)

@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import { useItemsStore } from '@/stores/items';
 import type { IToDo } from '@/types';
+import { computed } from 'vue';
 
 const props = defineProps({
     selectedIds: {
@@ -36,8 +37,16 @@ const setFilter = (filter: string) => {
     store.setFilter(filter);
 };
 
-const hasUncompleted = props.items.some(item => props.selectedIds.includes(item.id) && !item.completed);
-const hasCompleted = props.items.some(item => props.selectedIds.includes(item.id) && item.completed);
+const selectedItems = computed(() => {
+    return props.items.filter(item => props.selectedIds.includes(item.id));
+});
+
+const hasUncompleted = computed(() => {
+    return selectedItems.value.some(item => !item.completed);
+});
+const hasCompleted = computed(() => {
+    return selectedItems.value.some(item => item.completed);
+});
 
 
 </script>
