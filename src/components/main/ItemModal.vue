@@ -1,6 +1,6 @@
 
 <template>
-    <AppModal class="item-modal">
+    <AppModal class="item-modal" @close="emit('close')">
         <input type="text" v-model="name"/>
         <input type="text" v-model="description"/>
         <button @click="save">Save</button>
