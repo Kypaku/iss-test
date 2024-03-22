@@ -7,7 +7,6 @@
             @completeItems="completeSelectedItems()"
             @activateItems="activateSelectedItems()"
         />
-        <AddItem />
         <Items :items="store.items" :selectedIds="selectedIds" @toggleSelect="toggleSelect" />
     </main>
 </template>

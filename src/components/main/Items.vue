@@ -1,5 +1,6 @@
 <template>
     <div class="items">
+        <button class="bg-gray-300 mb-2 px-2 py-1 rounded" @click="add">Добавить</button>
         <Item 
             v-for="item in filtered"
             :item="item"
@@ -43,6 +44,17 @@ const filtered = computed(() => {
         if (store.filter === 'completed') return item.completed;
     });
 });
+
+const add = () => {
+    const item = {
+        name: 'Задача без названия',
+        id: Date.now(),
+        description: '',
+        completed: false
+    } as IToDo
+    store.addItem(item);
+    currentItem.value = item;
+};
 </script>
 
 <style lang="scss" scoped></style>
