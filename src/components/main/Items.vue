@@ -11,6 +11,9 @@
             @toggleSelect="() => emit('toggleSelect', item.id)"
             @openModal="currentItem = item"
         />
+        <div class="dummy text-gray-500" v-if="!filtered.length">
+            Нет задач по выбранному фильтру
+        </div>
         <ItemModal v-if="currentItem" :item="currentItem" @close="currentItem = null"/>
     </div>
 </template>

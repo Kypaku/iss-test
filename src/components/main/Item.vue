@@ -3,17 +3,17 @@
         class="item hover:bg-gray-100 py-1 px-1"
         :class="{selected, selecting}" 
     >
+        <button @click="toggle" class="mr-2 toggle-complete">
+            <span v-if="!item.completed">✔️</span>
+            <span v-else>❌</span>
+        </button>
+        <button class="item-name cursor-pointer flex-grow text-left" @click="emit('openModal')">{{ item.name }}</button>
         <input 
             type="checkbox" 
             class="mr-2 item-checkbox cursor-pointer"
             :checked="selected"
             @input="emit('toggleSelect')" 
         />
-        <button @click="toggle" class="mr-2 toggle-complete">
-            <span v-if="!item.completed">✔️</span>
-            <span v-else>❌</span>
-        </button>
-        <button class="item-name cursor-pointer flex-grow text-left" @click="emit('openModal')">{{ item.name }}</button>
     </div>
 </template>
 
