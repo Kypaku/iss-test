@@ -1,14 +1,18 @@
 <template>
-    <div class="main-toolbar">
-        <div class="filter">
-            <button :class="{ active: store.filter === 'all' }" @click="setFilter('all')">All</button>
-            <button :class="{ active: store.filter === 'active' }" @click="setFilter('active')">Active</button>
-            <button :class="{ active: store.filter === 'completed' }" @click="setFilter('completed')">Completed</button>
+    <div class="main-toolbar flex flex-col lg:flex-row-reverse lg:justify-between">
+        <div class="select text-sm text-right">            
+            <label for="main-toolbar-select" class="mr-2">Показать:</label>
+            <select id="main-toolbar-select" v-model="store.filter" @change="setFilter(store.filter)">
+                <option value="all">Все</option>
+                <option value="active">Активные</option>
+                <option value="completed">Завершенные</option>
+            </select>
         </div>
-        <div class="selected-actions" v-show="selectedIds.length">
-            <button @click="emit('removeItems')">Remove selected</button>
-            <button v-if="hasUncompleted" @click="emit('completeItems')">Complete selected</button>
-            <button v-if="hasCompleted" @click="emit('activateItems')">Activate selected</button>
+        <div class="selected-actions text-sm" v-show="selectedIds.length">
+            Выбранные:
+            <button @click="emit('removeItems')">Удалить</button>
+            <button v-if="hasUncompleted" @click="emit('completeItems')">Завершить</button>
+            <button v-if="hasCompleted" @click="emit('activateItems')">Активировать</button>
         </div>
     </div>
 </template>
