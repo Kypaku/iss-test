@@ -1,16 +1,19 @@
 <template>
-    <div class="item hover:bg-gray-100 py-1 px-1" :class="{selected}">
+    <div 
+        class="item hover:bg-gray-100 py-1 px-1"
+        :class="{selected, selecting}" 
+    >
         <input 
             type="checkbox" 
             class="mr-2 item-checkbox cursor-pointer"
             :checked="selected"
             @input="emit('toggleSelect')" 
         />
-        <button @click="toggle" class="mr-2">
+        <button @click="toggle" class="mr-2 toggle-complete">
             <span v-if="!item.completed">✔️</span>
             <span v-else>❌</span>
         </button>
-        <a href="#" @click.prevent="emit('openModal')">{{ item.name }}</a>
+        <button class="item-name cursor-pointer flex-grow text-left" @click="emit('openModal')">{{ item.name }}</button>
     </div>
 </template>
 
@@ -25,6 +28,10 @@ const props = defineProps({
         required: true
     },
     selected: {
+        type: Boolean,
+        default: false
+    },
+    selecting: {
         type: Boolean,
         default: false
     }
@@ -45,9 +52,18 @@ const toggle = () => {
     }
     .item{
         display: flex;
-        &:hover, &.selected{
+        &:hover, &.selected, &.selecting{
             .item-checkbox{
                 visibility: visible;
+            }
+        }
+        &.selecting{
+            .toggle-complete{
+                pointer-events: none;
+                filter: grayscale(1);
+            }
+            .item-name{
+                pointer-events: none;
             }
         }
     }

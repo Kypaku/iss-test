@@ -12,7 +12,7 @@
         <Items 
             :items="store.items"
             :selectedIds="selectedIds" 
-            @setSelect="toggleSelect" 
+            @toggleSelect="toggleSelect" 
         />
     </main>
 </template>
@@ -37,14 +37,17 @@ const toggleSelect = (id: number) => {
 
 const removeSelectedItems = () => {
     selectedIds.forEach(id => store.removeItem(id));
+    selectedIds.splice(0);
 };
 
 const completeSelectedItems = () => {
     selectedIds.forEach(id => store.setCompleted(id, true));
+    selectedIds.splice(0);
 };
 
 const activateSelectedItems = () => {
     selectedIds.forEach(id => store.setCompleted(id, false));
+    selectedIds.splice(0);
 };
 </script>
 

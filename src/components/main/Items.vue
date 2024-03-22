@@ -3,11 +3,11 @@
         <button class="bg-gray-300 mb-4 px-2 py-1 rounded" @click="add">Добавить</button>
         <Item 
             class="mb-1"
-            :class="{selected: selectedIds.length}"
             v-for="item in filtered"
             :item="item"
             :key="item.id"
             :selected="selectedIds.includes(item.id)"
+            :selecting="!!selectedIds.length"
             @toggleSelect="() => emit('toggleSelect', item.id)"
             @openModal="currentItem = item"
         />
@@ -56,6 +56,7 @@ const add = () => {
     } as IToDo
     store.addItem(item);
     currentItem.value = item;
+    store.setFilter('all');
 };
 </script>
 

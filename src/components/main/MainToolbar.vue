@@ -1,5 +1,5 @@
 <template>
-    <div class="main-toolbar flex flex-col lg:flex-row-reverse lg:justify-between">
+    <div class="main-toolbar flex flex-col">
         <div class="select text-sm text-right">            
             <label for="main-toolbar-select" class="mr-2">Показать:</label>
             <select id="main-toolbar-select" v-model="store.filter" @change="setFilter(store.filter)">
@@ -8,11 +8,16 @@
                 <option value="completed">Завершенные</option>
             </select>
         </div>
-        <div class="selected-actions text-sm" v-show="selectedIds.length">
-            Выбранные:
-            <button @click="emit('removeItems')">Удалить</button>
-            <button v-if="hasUncompleted" @click="emit('completeItems')">Завершить</button>
-            <button v-if="hasCompleted" @click="emit('activateItems')">Активировать</button>
+        <div class="selected-actions text-sm mt-2 flex flex-col-reverse md:flex-row" :class="{invisible: !selectedIds.length}">
+            <button @click="emit('clearSelected')" class="mr-4 underline text-left mt-2 md:mt-0">Снять выделение</button> 
+            <div class="flex flex-col md:flex-row">
+                Выбранные:
+                <div>
+                    <button class="md:ml-2 bg-red-200 px-1 rounded" @click="emit('removeItems')">Удалить</button>
+                    <button class="ml-2 bg-gray-200 px-1 rounded" v-if="hasUncompleted" @click="emit('completeItems')">Завершить</button>
+                    <button class="ml-2 bg-gray-200 px-1 rounded" v-if="hasCompleted" @click="emit('activateItems')">Активировать</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -33,7 +38,7 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits(['removeItems', 'completeItems', 'activateItems', 'clearSelected']);
+const emit = defineEmits(['removeItems', 'completeItems', 'activateItems', 'clearSelected', 'selectAll']);
 
 const store = useItemsStore();
 
